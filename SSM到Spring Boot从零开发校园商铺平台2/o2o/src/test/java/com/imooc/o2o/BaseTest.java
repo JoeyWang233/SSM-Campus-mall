@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 // 告诉junit spring配置文件的位置
+// 需要用到配置文件中所扫描的Bean，如果不声明配置，会导致注入失败
 @ContextConfiguration({"classpath:spring/spring-dao.xml", "classpath:spring/spring-service.xml",
 })
 public class BaseTest {
