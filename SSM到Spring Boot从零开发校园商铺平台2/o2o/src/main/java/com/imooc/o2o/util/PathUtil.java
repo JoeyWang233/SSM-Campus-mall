@@ -28,8 +28,15 @@ public class PathUtil {
         return basePath;
     }
 
+    /** 
+    * @Description: 获取shop图片在image内相对路径 
+    * @Param: [shopId] 
+    * @return: java.lang.String 
+    * @Author: Joey
+    * @Date: 2019/2/24 16:40
+    */ 
     public static String getShopImagePath(long shopId) {
-        String imagePath = "/upload/item/shop/" + shopId + "/";
+        String imagePath = "upload/item/shop/" + shopId + "/";
         return imagePath.replace("/", separator);
     }
 }
