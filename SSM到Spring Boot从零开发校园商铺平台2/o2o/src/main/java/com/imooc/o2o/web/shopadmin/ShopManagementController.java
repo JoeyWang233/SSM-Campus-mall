@@ -10,6 +10,7 @@ import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
+import com.imooc.o2o.util.CodeUtil;
 import com.imooc.o2o.util.HttpServletRequestUtil;
 import com.imooc.o2o.util.ImageUtil;
 import com.imooc.o2o.util.PathUtil;
@@ -47,22 +48,22 @@ public class ShopManagementController {
     @Autowired
     private AreaService areaService;
 
-    // 前端获取初始化数据(店铺类别、区域)
-    @RequestMapping(value = "/getshopinitinfo",method = RequestMethod.GET)
+    // 前端从后端获取初始化数据(店铺类别、区域)
+    @RequestMapping(value = "/getshopinitinfo", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getShopInitInfo(){
-        Map<String,Object> modelMap = new HashMap<>();
+    public Map<String, Object> getShopInitInfo() {
+        Map<String, Object> modelMap = new HashMap<>();
         List<ShopCategory> shopCategoryList;
-        List<Area> areaList ;
+        List<Area> areaList;
         try {
             shopCategoryList = shopCategoryService.getShopCategoryList(new ShopCategory());
             areaList = areaService.getAreaList();
-            modelMap.put("shopCategoryList",shopCategoryList);
-            modelMap.put("areaList",areaList);
-            modelMap.put("success",true);
-        }catch (Exception e){
-            modelMap.put("success",false);
-            modelMap.put("errMsg",e.getMessage());
+            modelMap.put("shopCategoryList", shopCategoryList);
+            modelMap.put("areaList", areaList);
+            modelMap.put("success", true);
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.getMessage());
         }
         return modelMap;
     }
@@ -72,6 +73,14 @@ public class ShopManagementController {
     @ResponseBody
     private Map<String, Object> registerShop(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
+
+        // verify code验证
+        if (!CodeUtil.checkVerfyCode(request)) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "输入了错误的验证码");
+            return modelMap;
+        }
+
         // 1.接收并转化相应的参数，包括店铺信息以及图片信息
         String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
         ObjectMapper mapper = new ObjectMapper();
