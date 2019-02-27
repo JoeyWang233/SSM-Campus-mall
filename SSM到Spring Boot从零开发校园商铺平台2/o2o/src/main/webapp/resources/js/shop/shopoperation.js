@@ -38,8 +38,8 @@ $(function () {
         };
         shop.shopAddr = $('#shop-addr').val();
         shop.shopDesc = $('#shop-desc').val();
-        shop.shopPhone = $('#shop-phone').val();
-        shop.shopArea = {
+        shop.phone = $('#shop-phone').val();
+        shop.area = {
             areaId: $('#area').find('option').not(function () {
                 return !this.selected;
             }).data('id')
