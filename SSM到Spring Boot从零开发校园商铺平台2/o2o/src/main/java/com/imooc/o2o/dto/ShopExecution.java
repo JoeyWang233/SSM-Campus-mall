@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @program: o2o
- * @description:
+ * @description: 在Service层封装，并返回给web层.web层根据此实例封装不同的modelAndView返回给前端。
  * @author: Joey
  * @create: 2019-02-24 14:35
  */

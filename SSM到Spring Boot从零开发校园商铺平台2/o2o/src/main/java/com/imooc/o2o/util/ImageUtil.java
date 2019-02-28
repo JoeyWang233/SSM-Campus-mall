@@ -63,7 +63,7 @@ public class ImageUtil {
      * relativeAddr: /a/b/c/20190224142298765.jpg
      * dest: 图片在本地的绝对路径
      */
-    public static String generateThumbnail(InputStream thumbnailInputStream, String fileName,String targetAddr){
+    public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr) {
         String realFileName = getRandomFileName();
         String extension = getFileExtension(fileName);
         // 传入进来的目录如果不存在则生成目录
@@ -122,6 +122,27 @@ public class ImageUtil {
         int rannum = r.nextInt(89999) + 10000;
         String nowTimeStr = sDateFormat.format(new Date());
         return nowTimeStr + rannum;
+    }
+
+    /**
+     * @Description: 如果storePath是文件路径则删除该文件；如果是目录路径则删除该目录下的所有文件
+     * @Param: [storePath]
+     * @return: void
+     * @Author: Joey
+     * @Date: 2019/2/28 16:43
+     */
+    public static void deleteFileOrPath(String storePath) {
+        File fileOrPath = new File(PathUtil.getImgBasePath() + storePath);
+        if (fileOrPath.exists()) {
+            if (fileOrPath.isDirectory()) {
+                // Directory，delete all files in this directory
+                File[] files = fileOrPath.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    files[i].delete();
+                }
+            }
+            fileOrPath.delete();
+        }
     }
 
     public static void main(String[] args) throws IOException {
