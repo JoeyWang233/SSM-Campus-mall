@@ -10,6 +10,8 @@ public interface ShopDao {
     * @Author: Joey
     * @Date: 2019/2/23 16:47
     */
+    Shop queryByShopId(long shopId);
+
     // 返回值为受影响的行数
     int insertShop(Shop shop);
 

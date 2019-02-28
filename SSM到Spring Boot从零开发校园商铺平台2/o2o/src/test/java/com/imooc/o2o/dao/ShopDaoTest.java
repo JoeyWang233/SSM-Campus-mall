@@ -53,6 +53,7 @@ public class ShopDaoTest extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void testUpdateShop() {
         Shop shop = new Shop();
         shop.setShopId(1L);
@@ -61,6 +62,12 @@ public class ShopDaoTest extends BaseTest {
         shop.setLastEditTime(new Date());
         int effectedNum = shopDao.updateShop(shop);
         assertEquals(1, effectedNum);
+    }
+
+    @Test
+    public void testQueryByShopId(){
+        Shop shop = shopDao.queryByShopId(2L);
+        System.out.println(shop);
     }
 
 }
