@@ -18,4 +18,14 @@ public class ShopAdminController {
         // 之所以不是"/WEB-INF/html/shop/shopoperation.html"是因为在spring-web.xml文件中定义了viewResolver Bean，其内设置了前后缀
         return "shop/shopoperation";
     }
+
+    @RequestMapping(value = "/shoplist", method = {RequestMethod.GET})
+    public String shopList() {
+        return "shop/shoplist";
+    }
+
+    @RequestMapping(value = "/shopmanagement", method = {RequestMethod.GET})
+    public String shopManagement() {
+        return "shop/shopmanagement";
+    }
 }
