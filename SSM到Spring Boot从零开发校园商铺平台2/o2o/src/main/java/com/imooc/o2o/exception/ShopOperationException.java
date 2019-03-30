@@ -8,7 +8,7 @@ package com.imooc.o2o.exception;
  */
 public class ShopOperationException extends RuntimeException {
     /**
-* @Description:  之所以做一层浅封装是因为ShopOperationException vs RuntimeException更有意义
+* @Description:  之所以做一层浅封装是因为ShopOperationException vs RuntimeException更有意义.且异常方便定位
 * @Param: [msg]
 * @return:
 * @Author: Joey

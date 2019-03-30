@@ -83,4 +83,25 @@ public class ProductCategoryManagementController {
         }
         return modelMap;
     }
+
+    @RequestMapping(value = "removeproductcategory", method = RequestMethod.POST)
+    @RequestBody
+    private Map<String, Object> removeproductcategory(@RequestBody Long productCategoryId, HttpServletRequest request){
+        Map<String, Object> model = new HashMap<>();
+        if(productCategoryId!=null&&productCategoryId>0){
+            try {
+                Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+                ProductCategoryExecution pe = productCategoryService.deleteProductCategory(productCategoryId, currentShop.getShopId());
+                if(pe.getState()==ProductCategoryStateEnum.SUCCESS.getStateCode())
+                    model.put("success", true);
+                else {
+                    model.put("success", false);
+                    model.put("errMsg", pe.getStateInfo());
+                }
+            }catch (Exception e){
+                model.put("success", false);
+                model.put("errMsg", e.toString());
+            }
+        }
+    }
 }

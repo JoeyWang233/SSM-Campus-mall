@@ -46,4 +46,27 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
             return new ProductCategoryExecution(ProductCategoryStateEnum.INNER_ERROR);
         }
     }
+
+    /**
+     * @Description: 将此类别下的商品Id置为空，再删除掉该商品类别
+     * @Param: [productCategoryId, shopId]
+     * @return: com.imooc.o2o.dto.ProductCategoryExecution
+     * @Author: Joey
+     * @Date: 2019/3/30 22:39
+     */
+    @Override
+    // 两步：1.将该商品类别下的商品的商品类别id字段置为空 2.删除商品类别  因此需要用事务管理起来
+    @Transactional
+    public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
+        //ToDO 将该商品类别下的商品的商品类别id字段置为空
+        try {
+            int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
+            if (effectedNum <= 0)
+                throw new ProductCategoryOperationException("商品类别删除失败");
+            else
+                return new ProductCategoryExecution(ProductCategoryStateEnum.SUCCESS);
+        } catch (Exception e) {
+            throw new ProductCategoryOperationException("deleteProductCategory error: " + e.getMessage());
+        }
+    }
 }

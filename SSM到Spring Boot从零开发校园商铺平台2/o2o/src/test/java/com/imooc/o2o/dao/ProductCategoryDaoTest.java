@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -38,5 +37,15 @@ public class ProductCategoryDaoTest extends BaseTest {
         productCategoryList.add(productCategory);
         int num = productCategoryDao.batchInsertProductCategory(productCategoryList);
         System.out.println(num);
+    }
+
+    @Test
+    public void testDeleteProductCategory(){
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setProductCategoryId(11L);
+        productCategory.setShopId(1L);
+
+        int effectNum = productCategoryDao.deleteProductCategory(productCategory.getProductCategoryId(), productCategory.getShopId());
+        System.out.println(effectNum);
     }
 }

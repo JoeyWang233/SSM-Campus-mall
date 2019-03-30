@@ -23,13 +23,11 @@ public class ProductCategoryExecution {
     public ProductCategoryExecution() {
     }
 
-    // Constructor -- fail
     public ProductCategoryExecution(ProductCategoryStateEnum stateEnum){
         this.state = stateEnum.getStateCode();
         this.stateInfo = stateEnum.getStateInfo();
     }
 
-    // Constructor -- success
     public ProductCategoryExecution(ProductCategoryStateEnum stateEnum, List<ProductCategory> productCategoryList){
         this.state = stateEnum.getStateCode();
         this.stateInfo = stateEnum.getStateInfo();
