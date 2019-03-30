@@ -56,7 +56,6 @@ public class ShopManagementController {
     * @Author: Joey
     * @Date: 2019/3/5 17:07
     */
-
     @RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
     @ResponseBody
     private Map<String, Object> getShopManagementInfo(HttpServletRequest request) {
