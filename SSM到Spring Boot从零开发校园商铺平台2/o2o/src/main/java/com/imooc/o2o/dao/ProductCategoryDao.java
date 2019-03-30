@@ -14,4 +14,13 @@ public interface ProductCategoryDao {
     * @Date: 2019/3/29 10:20
     */
     List<ProductCategory> queryProductCategoryList(Long shopId);
+
+    /** 
+    * @Description: 批量新增商品类别 
+    * @Param: [productCategoryList] 
+    * @return: int 
+    * @Author: Joey
+    * @Date: 2019/3/30 14:21
+    */ 
+    int batchInsertProductCategory(List<ProductCategory> productCategoryList);
 }
