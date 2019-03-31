@@ -5,6 +5,7 @@ import com.imooc.o2o.dto.Result;
 import com.imooc.o2o.entity.ProductCategory;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.enums.ProductCategoryStateEnum;
+import com.imooc.o2o.exception.ProductCategoryOperationException;
 import com.imooc.o2o.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -84,24 +85,31 @@ public class ProductCategoryManagementController {
         return modelMap;
     }
 
-    @RequestMapping(value = "removeproductcategory", method = RequestMethod.POST)
-    @RequestBody
-    private Map<String, Object> removeproductcategory(@RequestBody Long productCategoryId, HttpServletRequest request){
-        Map<String, Object> model = new HashMap<>();
+
+    @RequestMapping(value = "/removeproductcategory", method = RequestMethod.POST)
+    @ResponseBody
+    private Map<String, Object> removeproductcategory(Long productCategoryId, HttpServletRequest request){
+        Map<String, Object> modelMap = new HashMap<>();
         if(productCategoryId!=null&&productCategoryId>0){
             try {
                 Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
                 ProductCategoryExecution pe = productCategoryService.deleteProductCategory(productCategoryId, currentShop.getShopId());
                 if(pe.getState()==ProductCategoryStateEnum.SUCCESS.getStateCode())
-                    model.put("success", true);
+                    modelMap.put("success", true);
                 else {
-                    model.put("success", false);
-                    model.put("errMsg", pe.getStateInfo());
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", pe.getStateInfo());
                 }
-            }catch (Exception e){
-                model.put("success", false);
-                model.put("errMsg", e.toString());
+            }catch (ProductCategoryOperationException e){
+                modelMap.put("success", false);
+                modelMap.put("errMsg", e.toString());
+                return modelMap;
             }
+        }else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "请选择至少一个类别");
         }
+        return modelMap;
     }
+
 }

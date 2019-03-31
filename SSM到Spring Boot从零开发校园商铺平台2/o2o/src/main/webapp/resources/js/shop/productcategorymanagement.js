@@ -72,12 +72,15 @@ $(function () {
             });
         });
 
+    // delete temp category
     $('.category-wrap').on('click', '.row-product-category.temp .delete',
         function (e) {
             console.log($(this).parent().parent());
             $(this).parent().parent().remove();
 
         });
+
+    // delete now category
     $('.category-wrap').on('click', '.row-product-category.now .delete',
         function (e) {
             var target = e.currentTarget;
