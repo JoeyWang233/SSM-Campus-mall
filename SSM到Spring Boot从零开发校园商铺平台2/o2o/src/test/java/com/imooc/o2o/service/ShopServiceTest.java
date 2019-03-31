@@ -1,6 +1,7 @@
 package com.imooc.o2o.service;
 
 import com.imooc.o2o.BaseTest;
+import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
@@ -62,7 +63,7 @@ public class ShopServiceTest extends BaseTest {
 
         File shopImg = new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\imageSource\\dabai.jpg");
         InputStream inputStream = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.modifyShop(shop,inputStream,"dabai.jpg");
+        ShopExecution shopExecution = shopService.modifyShop(shop,new ImageHolder("dabai.jpg", inputStream));
 
         System.out.println(shopExecution.getShop().toString());
     }
@@ -93,7 +94,7 @@ public class ShopServiceTest extends BaseTest {
 
         File shopImg = new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\imageSource\\xiaohuangren.jpg");
         InputStream inputStream = new FileInputStream(shopImg);
-        ShopExecution se = shopService.addShop(shop,inputStream,shopImg.getName());
+        ShopExecution se = shopService.addShop(shop,new ImageHolder(shopImg.getName(),inputStream));
         assertEquals(ShopStateEnum.CHECK.getState(),se.getState());
     }
 

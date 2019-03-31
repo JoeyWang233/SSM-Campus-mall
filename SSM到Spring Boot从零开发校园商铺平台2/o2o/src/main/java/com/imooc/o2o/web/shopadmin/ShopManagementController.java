@@ -1,6 +1,7 @@
 package com.imooc.o2o.web.shopadmin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
@@ -49,13 +50,12 @@ public class ShopManagementController {
     private AreaService areaService;
 
     /**
-    * @Description:
-     *
-    * @Param: [request]
-    * @return: java.util.Map<java.lang.String,java.lang.Object>
-    * @Author: Joey
-    * @Date: 2019/3/5 17:07
-    */
+     * @Description:
+     * @Param: [request]
+     * @return: java.util.Map<java.lang.String       ,       java.lang.Object>
+     * @Author: Joey
+     * @Date: 2019/3/5 17:07
+     */
     @RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
     @ResponseBody
     private Map<String, Object> getShopManagementInfo(HttpServletRequest request) {
@@ -189,9 +189,9 @@ public class ShopManagementController {
             ShopExecution shopExecution = null;
             try {
                 if (shopImg == null) {
-                    shopExecution = shopService.modifyShop(shop, null, null);
+                    shopExecution = shopService.modifyShop(shop, null);
                 } else {
-                    shopExecution = shopService.modifyShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                    shopExecution = shopService.modifyShop(shop, new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream()));
 
                 }
                 if (shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
@@ -258,7 +258,7 @@ public class ShopManagementController {
 
             ShopExecution shopExecution = null;
             try {
-                shopExecution = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                shopExecution = shopService.addShop(shop, new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream()));
                 if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
                     modelMap.put("success", true);
                     // 该用户名下的店铺

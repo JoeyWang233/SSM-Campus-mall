@@ -1,5 +1,6 @@
 package com.imooc.o2o.util;
 
+import com.imooc.o2o.dto.ImageHolder;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Position;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -63,9 +64,9 @@ public class ImageUtil {
      * relativeAddr: /a/b/c/20190224142298765.jpg
      * dest: 图片在本地的绝对路径
      */
-    public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr) {
+    public static String generateThumbnail(ImageHolder thumbnail, String targetAddr) {
         String realFileName = getRandomFileName();
-        String extension = getFileExtension(fileName);
+        String extension = getFileExtension(thumbnail.getImamgeName());
         // 传入进来的目录如果不存在则生成目录
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName + extension;
@@ -73,7 +74,7 @@ public class ImageUtil {
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
         logger.debug("current complete addr is :" + PathUtil.getImgBasePath() + relativeAddr);
         try {
-            Thumbnails.of(thumbnailInputStream)
+            Thumbnails.of(thumbnail.getImage())
                     .size(200, 200)
                     .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\o2o\\target\\classes\\watermark.jpg")), 0.25f)
                     .outputQuality(0.8f)
