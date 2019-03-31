@@ -20,6 +20,13 @@ public class ProductCategory {
     // 创建时间
     private Date createTime;
 
+    public ProductCategory() {
+    }
+
+    public ProductCategory(Long productCategoryId) {
+        this.productCategoryId = productCategoryId;
+    }
+
     public void setProductCategoryId(Long productCategoryId) {
         this.productCategoryId = productCategoryId;
     }

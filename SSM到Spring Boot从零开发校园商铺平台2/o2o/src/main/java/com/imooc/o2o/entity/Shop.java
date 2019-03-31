@@ -39,6 +39,12 @@ public class Shop {
     // 店铺类别
     private ShopCategory shopCategory;
 
+    public Shop() {
+    }
+
+    public Shop(Long shopId) {
+        this.shopId = shopId;
+    }
 
     public void setShopId(Long shopId) {
         this.shopId = shopId;

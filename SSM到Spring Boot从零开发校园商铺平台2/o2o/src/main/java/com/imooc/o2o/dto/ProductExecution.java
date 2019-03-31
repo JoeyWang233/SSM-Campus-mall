@@ -25,6 +25,26 @@ public class ProductExecution {
     public ProductExecution() {
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public String getStateInfo() {
+        return stateInfo;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
     public ProductExecution(ProductStateEnum stateEnum){
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();

@@ -54,7 +54,6 @@ public class ImageUtil {
      * @Author: Joey
      * @Date: 2019/2/24 13:31
      */
-
     /**
      * 举例：
      * File: /xx/xx/xx/xxx.jpg
@@ -78,6 +77,35 @@ public class ImageUtil {
                     .size(200, 200)
                     .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\o2o\\target\\classes\\watermark.jpg")), 0.25f)
                     .outputQuality(0.8f)
+                    .toFile(dest);
+        } catch (IOException e) {
+            logger.error(e.toString());
+            e.printStackTrace();
+        }
+        return relativeAddr;
+    }
+
+    /** 
+    * @Description: 处理每种商品的详情图片 
+    * @Param: [productImgHolder, targetAddr] 
+    * @return: java.lang.String 
+    * @Author: Joey
+    * @Date: 2019/3/31 22:45
+    */ 
+    public static String generateNormalImg(ImageHolder productImgHolder, String targetAddr){
+        String realFileName = getRandomFileName();
+        String extension = getFileExtension(productImgHolder.getImamgeName());
+        // 传入进来的目录如果不存在则生成目录
+        makeDirPath(targetAddr);
+        String relativeAddr = targetAddr + realFileName + extension;
+        logger.debug("current relativeAddr is :" + relativeAddr);
+        File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
+        logger.debug("current complete addr is :" + PathUtil.getImgBasePath() + relativeAddr);
+        try {
+            Thumbnails.of(productImgHolder.getImage())
+                    .size(337, 640)
+                    .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\o2o\\target\\classes\\watermark.jpg")), 0.25f)
+                    .outputQuality(0.9f)
                     .toFile(dest);
         } catch (IOException e) {
             logger.error(e.toString());
