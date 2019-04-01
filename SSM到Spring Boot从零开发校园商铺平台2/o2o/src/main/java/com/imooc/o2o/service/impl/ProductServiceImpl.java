@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
             product.setEnableStatus(1);
 
             if (thumbnail != null)
-                addThumbnail(product, thumbnail);
+                this.addThumbnail(product, thumbnail);
 
             try {
                 int effectedNum = productDao.insertProduct(product);
@@ -61,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
             // 添加商品详情图
             if (productImgHolderList != null && productImgHolderList.size() > 0)
-                addProductImgList(product, productImgHolderList);
+                this.addProductImgList(product, productImgHolderList);
 
             return new ProductExecution(ProductStateEnum.SUCCESS, product);
         } else {
@@ -104,7 +104,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * @Description: add 缩略图
+     * @Description: 生成缩略图并将缩略图地址存入product
      * @Param: [product, thumbnail]
      * @return: void
      * @Author: Joey
