@@ -13,4 +13,13 @@ public interface ProductImgDao {
     * @Date: 2019/3/31 15:39
     */ 
     int batchInsertProductImg(List<ProductImg> productImgList);
+
+    /** 
+    * @Description: 删除指定商品下的所有详情图 
+    * @Param: [productId] 
+    * @return: int
+    * @Author: Joey
+    * @Date: 2019/4/2 21:30
+    */ 
+    int deleteProductImgByProductId(long productId);
 }

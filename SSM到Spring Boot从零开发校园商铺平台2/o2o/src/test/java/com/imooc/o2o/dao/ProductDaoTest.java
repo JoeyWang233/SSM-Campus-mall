@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * @program: o2o
  * @description:
@@ -20,7 +22,7 @@ public class ProductDaoTest extends BaseTest {
     private ProductDao productDao;
 
     @Test
-    public void testAInsertProduct(){
+    public void testAInsertProduct() {
         Shop shop1 = new Shop();
         shop1.setShopId(1L);
 
@@ -41,5 +43,28 @@ public class ProductDaoTest extends BaseTest {
 
 
         productDao.insertProduct(product);
+    }
+
+    @Test
+    public void testCQueryProductByProductId() {
+        Product product = productDao.queryProductById(1L);
+        System.out.println(product);
+    }
+
+    @Test
+    public void testDUpdateProduct() {
+        Product product = new Product();
+        ProductCategory pc = new ProductCategory();
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        pc.setProductCategoryId(2L);
+        product.setProductId(1L);
+        product.setShop(shop);
+        product.setProductName("第二个产品");
+        product.setProductCategory(pc);
+        // 修改productId为1的商品的名称
+        // 以及商品类别并校验影响的行数是否为1
+        int effectedNum = productDao.updateProduct(product);
+        assertEquals(1, effectedNum);
     }
 }

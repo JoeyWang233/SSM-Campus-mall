@@ -67,4 +67,15 @@ public class ProductCategory {
     public Date getCreateTime() {
         return createTime;
     }
+
+    @Override
+    public String toString() {
+        return "ProductCategory{" +
+                "productCategoryId=" + productCategoryId +
+                ", shopId=" + shopId +
+                ", productCategoryName='" + productCategoryName + '\'' +
+                ", priority=" + priority +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

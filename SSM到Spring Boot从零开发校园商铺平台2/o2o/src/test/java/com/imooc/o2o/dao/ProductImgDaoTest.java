@@ -25,7 +25,7 @@ public class ProductImgDaoTest extends BaseTest {
     private ProductImgDao productImgDao;
 
     @Test
-    public void testABatchInsertProductImg(){
+    public void testABatchInsertProductImg() {
         ProductImg productImg1 = new ProductImg();
 
         productImg1.setImgAddr("图片1");
@@ -47,6 +47,12 @@ public class ProductImgDaoTest extends BaseTest {
         productImgList.add(productImg2);
 
         int effectedNum = productImgDao.batchInsertProductImg(productImgList);
+        assertEquals(2, effectedNum);
+    }
+
+    @Test
+    public void testBDeleteProductImg() {
+        int effectedNum = productImgDao.deleteProductImgByProductId(1L);
         assertEquals(2, effectedNum);
     }
 }
