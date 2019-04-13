@@ -67,4 +67,6 @@ public class ProductDaoTest extends BaseTest {
         int effectedNum = productDao.updateProduct(product);
         assertEquals(1, effectedNum);
     }
+
+
 }

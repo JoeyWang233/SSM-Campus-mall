@@ -18,6 +18,26 @@ public class ProductExecution {
     // 商品数量
     private int count;
 
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public void setStateInfo(String stateInfo) {
+        this.stateInfo = stateInfo;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
     private Product product;
 
     private List<Product> productList;

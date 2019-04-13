@@ -10,6 +10,7 @@ import com.imooc.o2o.enums.ProductStateEnum;
 import com.imooc.o2o.exception.ProductOperationException;
 import com.imooc.o2o.service.ProductService;
 import com.imooc.o2o.util.ImageUtil;
+import com.imooc.o2o.util.PageCalculator;
 import com.imooc.o2o.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,66 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public Product getProductById(long productId) {
+        return productDao.queryProductById(productId);
+    }
+
+    @Override
+    @Transactional
+    public ProductExecution modifyProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgList) throws ProductOperationException {
+        if (product != null && product.getShop() != null && product.getShop().getShopId() != null) {
+            product.setLastEditTime(new Date());
+
+            // 如果前端传来有缩略图文件流，则更改缩略图
+            if (thumbnail != null) {
+                Product tempProduct = productDao.queryProductById(product.getProductId());
+                if (tempProduct.getImgAddr() != null)
+                    ImageUtil.deleteFileOrPath(tempProduct.getImgAddr());
+                this.addThumbnail(product, thumbnail);
+            }
+
+            // 如果前端传来有产品详情图，则更改详情图
+            if (productImgList != null) {
+                this.deleteProductImgList(product.getProductId());
+                this.addProductImgList(product, productImgList);
+            }
+
+            // 更新product字段信息
+            try {
+                int effectedNum = productDao.updateProduct(product);
+                if (effectedNum <= 0)
+                    throw new ProductOperationException("更新商品信息失败");
+                return new ProductExecution(ProductStateEnum.SUCCESS);
+            } catch (Exception e) {
+                throw new ProductOperationException("更新商品信息失败：" + e.toString());
+            }
+        } else {
+            return new ProductExecution(ProductStateEnum.EMPTY);
+        }
+
+    }
+
+    @Override
+    public ProductExecution getProductList(Product productCondition, int pageIndex, int pageSize) {
+        // 页码转换为行码
+        int rowIndex = PageCalculator.calculateRowIndex(pageIndex,pageSize);
+        List<Product> productList = productDao.queryProductList(productCondition,rowIndex,pageSize);
+        int count = productDao.queryProductCount(productCondition);
+        ProductExecution pe = new ProductExecution();
+        pe.setProductList(productList);
+        pe.setCount(count);
+        return pe;
+    }
+
+    private void deleteProductImgList(Long productId) {
+        List<ProductImg> productImgList = productImgDao.queryProductImgList(productId);
+        for (ProductImg productImg : productImgList) {
+            ImageUtil.deleteFileOrPath(productImg.getImgAddr());
+        }
+        productImgDao.deleteProductImgByProductId(productId);
+    }
+
     /**
      * @Description: 批量添加详情图片
      * @Param: [product, productImgHolderList]
@@ -81,7 +142,7 @@ public class ProductServiceImpl implements ProductService {
         String dest = PathUtil.getShopImagePath(product.getShop().getShopId());
         List<ProductImg> productImgList = new ArrayList<>();
 
-        for(ImageHolder productImgHolder: productImgHolderList){
+        for (ImageHolder productImgHolder : productImgHolderList) {
             String imgAddr = ImageUtil.generateNormalImg(productImgHolder, dest);
             ProductImg productImg = new ProductImg();
 
@@ -92,12 +153,12 @@ public class ProductServiceImpl implements ProductService {
             productImgList.add(productImg);
         }
 
-        if(productImgList.size()>0){
+        if (productImgList.size() > 0) {
             try {
                 int effectedNum = productImgDao.batchInsertProductImg(productImgList);
-                if(effectedNum<=0)
+                if (effectedNum <= 0)
                     throw new ProductOperationException("创建商品详情图片失败");
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw new ProductOperationException("创建商品详情图片失败");
             }
         }

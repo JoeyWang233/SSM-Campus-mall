@@ -155,7 +155,7 @@ public class ShopManagementController {
         Map<String, Object> modelMap = new HashMap<>();
 
         // verify code验证
-        if (!CodeUtil.checkVerfyCode(request)) {
+        if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "输入了错误的验证码");
             return modelMap;
@@ -217,7 +217,7 @@ public class ShopManagementController {
         Map<String, Object> modelMap = new HashMap<>();
 
         // verify code验证
-        if (!CodeUtil.checkVerfyCode(request)) {
+        if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
             modelMap.put("errMsg", "输入了错误的验证码");
             return modelMap;

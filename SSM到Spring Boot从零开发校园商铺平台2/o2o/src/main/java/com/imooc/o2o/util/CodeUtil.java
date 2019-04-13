@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @create: 2019-02-27 12:22
  */
 public class CodeUtil {
-    public static boolean checkVerfyCode(HttpServletRequest request){
+    public static boolean checkVerifyCode(HttpServletRequest request){
         String verifyCodeExpected = (String)request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         String verifyCodeActual = HttpServletRequestUtil.getString(request,"verifyCodeActual");
         return verifyCodeActual != null && verifyCodeActual.equals(verifyCodeExpected);

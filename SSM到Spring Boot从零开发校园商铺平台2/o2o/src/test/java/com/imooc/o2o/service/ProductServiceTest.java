@@ -65,4 +65,34 @@ public class ProductServiceTest extends BaseTest {
         ProductExecution pe = productService.addProduct(product, thumbnail, productImgHolderList);
         assertEquals(ProductStateEnum.SUCCESS.getState(),pe.getState());
     }
+
+    @Test
+    public void testModifyProduct() throws FileNotFoundException {
+        Product product = new Product();
+        Shop shop = new Shop(1L);
+
+        product.setShop(shop);
+        product.setProductId(3L);
+
+        // 创建缩略图文件流
+        File thumbnailFile = new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\imageSource\\xiaohuangren.jpg");
+        InputStream thumbnailIs = new FileInputStream(thumbnailFile);
+        ImageHolder thumbnail = new ImageHolder(thumbnailFile.getName(), thumbnailIs);
+
+        // 创建详情图文件流
+        File productImgFile1 = new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\imageSource\\xiaohuangren.jpg");
+        InputStream productImg1Is = new FileInputStream(productImgFile1);
+        ImageHolder productImg1 = new ImageHolder(productImgFile1.getName(), productImg1Is);
+
+        File productImgFile2 = new File("D:\\桌面临时文件\\SSM到Spring Boot从零开发校园商铺平台2\\imageSource\\xiaohuangren.jpg");
+        InputStream productImg2Is = new FileInputStream(productImgFile2);
+        ImageHolder productImg2 = new ImageHolder(productImgFile2.getName(), productImg2Is);
+
+        List<ImageHolder> productImgHolderList = new ArrayList<>();
+        productImgHolderList.add(productImg1);
+        productImgHolderList.add(productImg2);
+
+        ProductExecution pe = productService.modifyProduct(product, thumbnail, productImgHolderList);
+        assertEquals(ProductStateEnum.SUCCESS.getState(),pe.getState());
+    }
 }
