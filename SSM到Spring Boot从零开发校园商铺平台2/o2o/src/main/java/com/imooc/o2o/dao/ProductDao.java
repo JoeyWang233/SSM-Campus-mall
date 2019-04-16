@@ -50,6 +50,15 @@ public interface ProductDao {
     * @Date: 2019/4/12 13:00
     */
     int queryProductCount(@Param("productCondition")Product productCondition);
+    
+    /** 
+    * @Description: 删除商品类别之前，将商品类别ID置为空 
+    * @Param: [productCategoryId]
+    * @return: int 
+    * @Author: Joey
+    * @Date: 2019/4/13 13:07
+    */ 
+    int updateProductCategoryToNull(long productCategoryId);
 
 //
 //    /**

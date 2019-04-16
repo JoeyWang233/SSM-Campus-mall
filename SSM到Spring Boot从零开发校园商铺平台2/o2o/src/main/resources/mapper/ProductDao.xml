@@ -91,7 +91,6 @@
         WHERE product_id = #{productId} AND shop_id=#{shop.shopId}
     </update>
 
-
     <insert id="insertProduct" parameterType="com.imooc.o2o.entity.Product" useGeneratedKeys="true"
             keyProperty="productId" keyColumn="product_id">
         INSERT INTO
@@ -148,5 +147,11 @@
         </where>
     </select>
 
+    <select id="updateProductCategoryToNull" parameterType="Long">
+        UPDATE tb_product
+        SET
+            product_category_id=null
+        WHERE product_category_id = #{productCategoryId}
+    </select>
 
 </mapper>
