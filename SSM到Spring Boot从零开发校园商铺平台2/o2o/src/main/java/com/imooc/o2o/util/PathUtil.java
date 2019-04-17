@@ -20,7 +20,7 @@ public class PathUtil {
         String os = System.getProperty("os.name");
         String basePath;
         if (os.toLowerCase().startsWith("win")) {
-            basePath = "D:/桌面临时文件/SSM到Spring Boot从零开发校园商铺平台2/image/";
+            basePath = "D:/桌面临时文件/SSM到Spring Boot从零开发校园商铺平台2/";
         } else {
             basePath = "/home/xiangze/image";
         }

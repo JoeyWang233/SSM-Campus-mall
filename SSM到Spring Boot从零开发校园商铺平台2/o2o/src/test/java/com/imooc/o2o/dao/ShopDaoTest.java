@@ -74,7 +74,7 @@ public class ShopDaoTest extends BaseTest {
 
     @Test
     public void testQueryShopListAndCount(){
-        Shop shopCondition = new Shop();
+/*        Shop shopCondition = new Shop();
 
         PersonInfo owner = new PersonInfo();
         owner.setUserId(1L);
@@ -94,7 +94,9 @@ public class ShopDaoTest extends BaseTest {
         List<Shop> shopList = shopDao.queryShopList(shopCondition,0,10);
         int count = shopDao.queryShopCount(shopCondition);
         System.out.println(shopList.size());
-        System.out.println(count);
+        System.out.println(count);*/
+
+
     }
 
 }

@@ -26,6 +26,13 @@ public class ShopCategory {
     // 父类别
     private ShopCategory parent;
 
+    public ShopCategory() {
+    }
+
+    public ShopCategory(Long shopCategoryId) {
+        this.shopCategoryId = shopCategoryId;
+    }
+
     public void setShopCategoryId(Long shopCategoryId) {
         this.shopCategoryId = shopCategoryId;
     }
