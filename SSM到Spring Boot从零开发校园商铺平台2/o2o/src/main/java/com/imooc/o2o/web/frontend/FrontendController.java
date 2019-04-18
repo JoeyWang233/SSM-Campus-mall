@@ -28,4 +28,23 @@ public class FrontendController {
     private String shoplist(){
         return "frontend/shoplist";
     }
+
+    /**
+     * 店铺详情页路由
+     *
+     * @return
+     */
+    @RequestMapping(value = "/shopdetail",method = RequestMethod.GET)
+    private String shopdetail(){
+        return "frontend/shopdetail";
+    }
+
+    /**
+     * 商品详情页路由
+     * @return
+     */
+    @RequestMapping(value = "/productdetail",method = RequestMethod.GET)
+    private String productdetail(){
+        return "frontend/productdetail";
+    }
 }

@@ -138,7 +138,7 @@ $(function() {
     // 点击店铺的卡片进入该店铺的详情页
     $('.shop-list').on('click', '.card', function(e) {
         var shopId = e.currentTarget.dataset.shopId;
-        window.location.href = '/myo2o/frontend/shopdetail?shopId=' + shopId;
+        window.location.href = '/o2o/frontend/shopdetail?shopId=' + shopId;
     });
 
     // 选择新的店铺类别之后，重置页码，清空原先的店铺列表，按照新的类别去查询

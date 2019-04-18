@@ -16,7 +16,7 @@ public interface ShopService {
     * @Author: Joey
     * @Date: 2019/3/5 15:31
     */ 
-    public ShopExecution getShopList(Shop shopCondition,int pageIndex,int pageSize);
+    ShopExecution getShopList(Shop shopCondition,int pageIndex,int pageSize);
 
     ShopExecution addShop(Shop shop, ImageHolder thumbnail);
 
