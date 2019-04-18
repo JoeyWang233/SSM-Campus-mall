@@ -18,4 +18,14 @@ public class FrontendController {
     private String index(){
         return "frontend/index";
     }
+
+    /**
+     * 商店列表页路由
+     *
+     * @return
+     */
+    @RequestMapping(value = "/shoplist",method = RequestMethod.GET)
+    private String shoplist(){
+        return "frontend/shoplist";
+    }
 }

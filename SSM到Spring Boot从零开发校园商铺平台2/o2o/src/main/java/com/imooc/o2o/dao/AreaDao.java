@@ -12,6 +12,6 @@ public interface AreaDao {
     * @return: java.util.List<com.imooc.o2o.entity.Area> 
     * @Author: Joey
     * @Date: 2019/2/22 
-    */ 
+    */
     List<Area> queryArea();
 }
