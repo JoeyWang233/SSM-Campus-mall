@@ -3,23 +3,33 @@
     <words>
       <w>addr</w>
       <w>alicdn</w>
+      <w>allfirstlevel</w>
+      <w>allsecondlevel</w>
+      <w>arealist</w>
+      <w>arealistkey</w>
       <w>dabai</w>
+      <w>echostr</w>
       <w>getshopbyid</w>
       <w>getshopinitinfo</w>
       <w>getshoplist</w>
       <w>getshopmanagementinfo</w>
+      <w>headlinelist</w>
+      <w>hllistkey</w>
       <w>imagemaxcount</w>
       <w>imooc</w>
+      <w>jedis</w>
       <w>kaptcha</w>
       <w>listarea</w>
       <w>msui</w>
       <w>registershop</w>
+      <w>sclistkey</w>
       <w>shopadmin</w>
       <w>shoplist</w>
       <w>shopmanagement</w>
       <w>shopoperation</w>
       <w>superadmin</w>
       <w>webapps</w>
+      <w>wechat</w>
       <w>xiangze</w>
       <w>xiaohuangren</w>
     </words>

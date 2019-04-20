@@ -22,7 +22,7 @@ public class PathUtil {
         if (os.toLowerCase().startsWith("win")) {
             basePath = "D:/桌面临时文件/SSM到Spring Boot从零开发校园商铺平台2";
         } else {
-            basePath = "/home/xiangze/image";
+            basePath = "/home/o2o";
         }
         basePath = basePath.replace("/", separator);
         return basePath;
@@ -36,7 +36,7 @@ public class PathUtil {
     * @Date: 2019/2/24 16:40
     */ 
     public static String getShopImagePath(long shopId) {
-        String imagePath = "/upload/item/shop/" + shopId + "/";
+        String imagePath = "/upload/images/item/shop/" + shopId + "/";
         return imagePath.replace("/", separator);
     }
 }

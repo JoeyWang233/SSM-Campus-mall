@@ -15,7 +15,7 @@
             last_edit_time
         FROM tb_head_line
         <where>
-            <if test="headLineCondition.enableStatus!=null">
+            <if test="headLineCondition!=null and headLineCondition.enableStatus!=null">
                 and enable_status = #{headLineCondition.enableStatus}
             </if>
         </where>

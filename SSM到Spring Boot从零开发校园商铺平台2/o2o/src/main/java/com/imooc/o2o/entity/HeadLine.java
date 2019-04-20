@@ -19,6 +19,9 @@ public class HeadLine {
     private Date createTime;
     private Date lastEditTime;
 
+    public HeadLine() {
+    }
+
     public void setLineId(Long lineId) {
         this.lineId = lineId;
     }
