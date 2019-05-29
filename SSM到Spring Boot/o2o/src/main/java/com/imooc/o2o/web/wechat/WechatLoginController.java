@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * @program: o2o
@@ -26,11 +27,11 @@ import java.io.IOException;
  * https://open.weixin.qq.com/connect/oauth2/authorize
  * ?appid=您的appId
  * &redirect_uri=http://o2o.yitiaojieinfo.com/o2o/wechatlogin/logincheck
- * &role_type=1
- * &response_type=code
+ * &response_type=code 78
  * &scope=snsapi_userinfo
  * &state=1#wechat_redirect
  * 则这里将会获取到code,之后再可以通过code获取到access_token 进而获取到用户信息
+ * https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b1caec8753db412&redirect_uri=http://o2o.wanggaofei.top/o2o/wechatlogin/logincheck&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
  */
 public class WechatLoginController {
 
@@ -38,6 +39,7 @@ public class WechatLoginController {
 
     @RequestMapping(value = "/logincheck", method = { RequestMethod.GET })
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
+        log.debug("last update time:" + new Date());
         log.debug("wechat login get...");
 
         String code = request.getParameter("code");

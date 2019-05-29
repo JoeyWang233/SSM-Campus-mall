@@ -40,7 +40,8 @@ public class WechatUtil {
         log.debug("appsecret:" + appsecret);
 
         // 根据code访问此url获取access_token
-        String url = "https://api.wechat.qq.com/sns/oauth2/access_token"
+        //https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx4b1caec8753db412&secret=023baecf69a961cdd2f8a7404172301f&code=081nn4ye0rzu6t14VNBe0RAXxe0nn4y8&grant_type=authorization_code
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token"
                 + "?appid=" + appId
                 + "&secret=" + appsecret
                 + "&code=" + code

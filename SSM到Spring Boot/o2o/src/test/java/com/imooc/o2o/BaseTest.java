@@ -16,5 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class BaseTest {
     // 此方法为空，不写会报No runnable methods ERROR
     @Test
-    public void test(){}
+    public void test(){
+        System.out.println(System.getProperty("java.version"));
+    }
 }
