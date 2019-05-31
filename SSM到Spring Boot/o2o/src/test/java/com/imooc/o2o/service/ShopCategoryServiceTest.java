@@ -2,6 +2,7 @@ package com.imooc.o2o.service;
 
 import com.imooc.o2o.BaseTest;
 import com.imooc.o2o.entity.ShopCategory;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ public class ShopCategoryServiceTest extends BaseTest {
     @Autowired
     private ShopCategoryService shopCategoryService;
 
+    @Ignore
     @Test
     public void testgetShopCategoryList(){
         ShopCategory shopCategoryCondition = new ShopCategory();

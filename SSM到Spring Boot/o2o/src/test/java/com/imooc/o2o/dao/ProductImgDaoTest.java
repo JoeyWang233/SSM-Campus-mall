@@ -3,6 +3,7 @@ package com.imooc.o2o.dao;
 import com.imooc.o2o.BaseTest;
 import com.imooc.o2o.entity.ProductImg;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class ProductImgDaoTest extends BaseTest {
     @Autowired
     private ProductImgDao productImgDao;
 
+    @Ignore
     @Test
     public void testABatchInsertProductImg() {
         ProductImg productImg1 = new ProductImg();
@@ -50,12 +52,14 @@ public class ProductImgDaoTest extends BaseTest {
         assertEquals(2, effectedNum);
     }
 
+    @Ignore
     @Test
     public void testBDeleteProductImg() {
         int effectedNum = productImgDao.deleteProductImgByProductId(1L);
         assertEquals(2, effectedNum);
     }
 
+    @Ignore
     @Test
     public void testQueryProductImgList(){
         List<ProductImg> productImgList = productImgDao.queryProductImgList(3L);

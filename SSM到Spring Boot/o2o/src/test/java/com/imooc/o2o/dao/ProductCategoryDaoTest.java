@@ -19,6 +19,7 @@ public class ProductCategoryDaoTest extends BaseTest {
     @Autowired
     public ProductCategoryDao productCategoryDao;
 
+    @Ignore
     @Test
     public void testQueryByShopId() {
         long shopId = 1;
@@ -41,6 +42,7 @@ public class ProductCategoryDaoTest extends BaseTest {
         System.out.println(num);
     }
 
+    @Ignore
     @Test
     public void testDeleteProductCategory(){
         ProductCategory productCategory = new ProductCategory();

@@ -31,6 +31,7 @@ public class ShopServiceTest extends BaseTest {
     @Autowired
     private ShopService shopService;
 
+    @Ignore
     @Test
     public void testGetShopList(){
         Shop shopCondition = new Shop();

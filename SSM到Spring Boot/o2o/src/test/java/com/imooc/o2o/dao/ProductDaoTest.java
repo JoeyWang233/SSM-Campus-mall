@@ -47,6 +47,7 @@ public class ProductDaoTest extends BaseTest {
         productDao.insertProduct(product);
     }
 
+    @Ignore
     @Test
     public void testCQueryProductByProductId() {
         Product product = productDao.queryProductById(1L);

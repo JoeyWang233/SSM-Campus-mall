@@ -64,6 +64,7 @@ public class WechatLoginController {
         WechatUser user = null;
         String openId = null;
         WechatAuth auth = null;
+        PersonInfo personInfo = null;
         if (null != code) {
             UserAccessToken token;
             try {
@@ -87,7 +88,7 @@ public class WechatLoginController {
 
         if (auth == null) {
             // tb_wechat_auth中没有当前openId对应的记录
-            PersonInfo personInfo = WechatUtil.getPersonInfoFromRequest(user);
+            personInfo = WechatUtil.getPersonInfoFromRequest(user);
 
             if (FRONTEND.equals(roleType)) {
                 personInfo.setUserType(1);
@@ -101,11 +102,12 @@ public class WechatLoginController {
             WechatAuthExecution we = wechatAuthService.register(auth);
             if (we.getState() != WechatAuthStateEnum.SUCCESS.getState()) {
                 return null;
-            }else {
-                personInfo = personInfoService.getPersonInfoById(auth.getPersonInfo().getUserId());
-                request.getSession().setAttribute("user",personInfo);
             }
         }
+
+        // 将当前用户放入session中
+        personInfo = personInfoService.getPersonInfoById(auth.getPersonInfo().getUserId());
+        request.getSession().setAttribute("user",personInfo);
 
         if (FRONTEND.equals(roleType)) {
             // 用户点击前端展示系统按钮，进入前端展示系统

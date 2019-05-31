@@ -71,6 +71,7 @@ public class ShopDaoTest extends BaseTest {
         System.out.println(shop);
     }
 
+    @Ignore
     @Test
     public void testQueryShopListAndCount(){
 /*        Shop shopCondition = new Shop();
