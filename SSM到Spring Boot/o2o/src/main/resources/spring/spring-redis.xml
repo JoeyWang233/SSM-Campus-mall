@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--maxActive等属性已在spring-dao.xml中引入-->
+
     <!-- Redis连接池的设置 -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <!-- 控制一个pool可分配多少个jedis实例 -->

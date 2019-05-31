@@ -7,9 +7,7 @@ import redis.clients.util.SafeEncoder;
 import java.util.Set;
 
 public class JedisUtil {
-    /**
-     * 缓存生存时间
-     */
+    //缓存生存时间
     private final int expire = 60000;
     public Keys KEYS;
     public Strings STRINGS;
@@ -26,8 +24,6 @@ public class JedisUtil {
 
     /**
      * 从jedis连接池中获取获取jedis对象
-     *
-     * @return
      */
     public Jedis getJedis() {
         return jedisPool.getResource();

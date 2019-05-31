@@ -11,8 +11,6 @@ import java.security.SecureRandom;
 /**
  * DES是一种对称加密算法，所谓对称加密算法即：加密和解密使用相同密钥的算法。
  *
- * @author xiangze
- *
  */
 public class DESUtil {
 
@@ -42,9 +40,6 @@ public class DESUtil {
 
     /**
      * 获取加密后的信息
-     *
-     * @param str
-     * @return
      */
     public static String getEncryptString(String str) {
         // 基于BASE64编码，接收byte[]并转换成String
