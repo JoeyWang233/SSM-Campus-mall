@@ -23,7 +23,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,14 +84,14 @@ public class ShopManagementController {
     private Map<String, Object> getShopList(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
 
-        /*start: 此部分模拟user，引入身份登陆功能后重构此部分代码 TODO*/
-        PersonInfo user = new PersonInfo();
+        /*start: 此部分模拟user，引入身份登陆功能后重构此部分代码*/
+        /*PersonInfo user = new PersonInfo();
         user.setUserId(1L);
         user.setName("test");
-        request.getSession().setAttribute("user", user);
+        request.getSession().setAttribute("user", user);*/
         /*end*/
 
-        user = (PersonInfo) request.getSession().getAttribute("user");
+        PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
         try {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);
