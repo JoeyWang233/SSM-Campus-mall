@@ -48,11 +48,9 @@ public class ShopManagementController {
     private AreaService areaService;
 
     /**
-     * @Description:
-     * @Param: [request]
-     * @return: java.util.Map<java.lang.String       ,       java.lang.Object>
-     * @Author: Joey
-     * @Date: 2019/3/5 17:07
+     *
+     * @param request
+     * @return
      */
     @RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
     @ResponseBody
@@ -96,6 +94,8 @@ public class ShopManagementController {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);
             ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 100);
+            // 将店铺列表放入session作为权限验证依据，即该账号只能操作自己的店铺
+            request.getSession().setAttribute("shopList",shopExecution.getShopList());
             modelMap.put("shopList", shopExecution.getShopList());
             modelMap.put("user", user);
             modelMap.put("success", true);
