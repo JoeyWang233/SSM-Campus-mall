@@ -28,11 +28,14 @@ import java.util.List;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
-    @Autowired
-    private ProductDao productDao;
+    private final ProductDao productDao;
+    private final ProductImgDao productImgDao;
 
     @Autowired
-    private ProductImgDao productImgDao;
+    public ProductServiceImpl(ProductDao productDao, ProductImgDao productImgDao) {
+        this.productDao = productDao;
+        this.productImgDao = productImgDao;
+    }
 
     // 对图片的处理在这里做
     @Override

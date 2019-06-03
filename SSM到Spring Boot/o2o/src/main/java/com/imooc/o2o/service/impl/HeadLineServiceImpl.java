@@ -26,16 +26,19 @@ import java.util.List;
  */
 @Service
 public class HeadLineServiceImpl implements HeadLineService {
-    @Autowired
-    private HeadLineDao headLineDao;
 
-    @Autowired
-    private JedisUtil.Keys jedisKeys;
-
-    @Autowired
-    private JedisUtil.Strings jedisStrings;
+    private final HeadLineDao headLineDao;
+    private final JedisUtil.Keys jedisKeys;
+    private final JedisUtil.Strings jedisStrings;
 
     public Logger log = LoggerFactory.getLogger(HeadLineServiceImpl.class);
+
+    @Autowired
+    public HeadLineServiceImpl(HeadLineDao headLineDao, JedisUtil.Keys jedisKeys, JedisUtil.Strings jedisStrings) {
+        this.headLineDao = headLineDao;
+        this.jedisKeys = jedisKeys;
+        this.jedisStrings = jedisStrings;
+    }
 
     @Override
     public List<HeadLine> getHeadLineList(HeadLine headLineCondition) throws IOException {

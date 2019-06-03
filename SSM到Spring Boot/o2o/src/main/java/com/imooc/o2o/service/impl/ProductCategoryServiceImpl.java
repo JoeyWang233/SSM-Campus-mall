@@ -22,10 +22,14 @@ import java.util.List;
 
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
+    private final ProductCategoryDao productCategoryDao;
+    private final ProductDao productDao;
+
     @Autowired
-    private ProductCategoryDao productCategoryDao;
-    @Autowired
-    private ProductDao productDao;
+    public ProductCategoryServiceImpl(ProductCategoryDao productCategoryDao, ProductDao productDao) {
+        this.productCategoryDao = productCategoryDao;
+        this.productDao = productDao;
+    }
 
     @Override
     public List<ProductCategory> getProductCategoryList(long shopId) {

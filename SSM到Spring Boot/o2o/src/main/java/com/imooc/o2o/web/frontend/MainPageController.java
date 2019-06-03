@@ -14,20 +14,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @program: o2o
- * @description:
- * @author: Joey
- * @create: 2019-04-16 10:38
- */
 @Controller
 @RequestMapping("/frontend")
 public class MainPageController {
-    @Autowired
-    private HeadLineService headLineService;
+    private final HeadLineService headLineService;
+
+    private final ShopCategoryService shopCategoryService;
 
     @Autowired
-    private ShopCategoryService shopCategoryService;
+    public MainPageController(HeadLineService headLineService, ShopCategoryService shopCategoryService) {
+        this.headLineService = headLineService;
+        this.shopCategoryService = shopCategoryService;
+    }
 
     @RequestMapping(value = "/listmainpageinfo", method = RequestMethod.GET)
     @ResponseBody

@@ -4,12 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * @program: o2o
- * @description:
- * @author: Joey
- * @create: 2019-04-16 14:18
- */
 @Controller
 @RequestMapping(value = "/frontend")
 public class FrontendController {
@@ -22,7 +16,6 @@ public class FrontendController {
     /**
      * 商店列表页路由
      *
-     * @return
      */
     @RequestMapping(value = "/shoplist",method = RequestMethod.GET)
     private String shoplist(){
@@ -32,7 +25,6 @@ public class FrontendController {
     /**
      * 店铺详情页路由
      *
-     * @return
      */
     @RequestMapping(value = "/shopdetail",method = RequestMethod.GET)
     private String shopdetail(){
@@ -41,7 +33,6 @@ public class FrontendController {
 
     /**
      * 商品详情页路由
-     * @return
      */
     @RequestMapping(value = "/productdetail",method = RequestMethod.GET)
     private String productdetail(){

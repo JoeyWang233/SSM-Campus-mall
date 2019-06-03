@@ -23,8 +23,12 @@ import java.util.Map;
 @RequestMapping("/frontend")
 public class ProductDetailController {
 
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductDetailController(ProductService productService) {
+        this.productService = productService;
+    }
 
     /**
      * 根据商品Id获取商品详情

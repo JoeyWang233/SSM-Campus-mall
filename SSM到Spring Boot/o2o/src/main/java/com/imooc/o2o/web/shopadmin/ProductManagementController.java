@@ -38,14 +38,18 @@ import java.util.Map;
 @Controller
 @RequestMapping("/shopadmin")
 public class ProductManagementController {
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    private ProductCategoryService productCategoryService;
+    private final ProductCategoryService productCategoryService;
 
     // 约束上传商品详情图的最大数量
     private static final int IMAGEMAXCOUNT = 6;
+
+    @Autowired
+    public ProductManagementController(ProductService productService, ProductCategoryService productCategoryService) {
+        this.productService = productService;
+        this.productCategoryService = productCategoryService;
+    }
 
     @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
     @ResponseBody

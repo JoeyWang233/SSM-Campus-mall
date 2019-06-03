@@ -29,8 +29,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("/shopadmin")
 public class ProductCategoryManagementController {
+    private final ProductCategoryService productCategoryService;
+
     @Autowired
-    private ProductCategoryService productCategoryService;
+    public ProductCategoryManagementController(ProductCategoryService productCategoryService) {
+        this.productCategoryService = productCategoryService;
+    }
 
     @RequestMapping(value = "/getproductcategorylist", method = RequestMethod.GET)
     @ResponseBody

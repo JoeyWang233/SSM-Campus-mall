@@ -20,14 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * @program: o2o
- * @description:
- * @author: Joey
- * @create: 2019-05-28 11:59
- */
-@Controller
-@RequestMapping("wechatlogin")
+
 /**
  * 获取关注公众号之后的微信用户信息的接口，如果在微信浏览器里访问
  * https://open.weixin.qq.com/connect/oauth2/authorize
@@ -39,6 +32,8 @@ import java.io.IOException;
  * 则这里将会获取到code,之后再可以通过code获取到access_token 进而获取到用户信息
  * https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b1caec8753db412&redirect_uri=http://o2o.wanggaofei.top/o2o/wechatlogin/logincheck&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
  */
+@Controller
+@RequestMapping("wechatlogin")
 public class WechatLoginController {
 
     private static Logger log = LoggerFactory.getLogger(WechatLoginController.class);
@@ -46,11 +41,15 @@ public class WechatLoginController {
     private static final String FRONTEND = "1";
     private static final String SHOPEND = "2";
 
-    @Autowired
-    private PersonInfoService personInfoService;
+    private final PersonInfoService personInfoService;
+
+    private final WechatAuthService wechatAuthService;
 
     @Autowired
-    private WechatAuthService wechatAuthService;
+    public WechatLoginController(PersonInfoService personInfoService, WechatAuthService wechatAuthService) {
+        this.personInfoService = personInfoService;
+        this.wechatAuthService = wechatAuthService;
+    }
 
     @RequestMapping(value = "/logincheck", method = {RequestMethod.GET})
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -88,6 +87,7 @@ public class WechatLoginController {
 
         if (auth == null) {
             // tb_wechat_auth中没有当前openId对应的记录
+            assert user != null;
             personInfo = WechatUtil.getPersonInfoFromRequest(user);
 
             if (FRONTEND.equals(roleType)) {

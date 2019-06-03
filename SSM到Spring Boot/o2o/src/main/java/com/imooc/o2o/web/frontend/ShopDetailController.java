@@ -29,14 +29,18 @@ import java.util.Map;
 @RequestMapping("/frontend")
 public class ShopDetailController {
 
-    @Autowired
-    private ShopService shopService;
+    private final ShopService shopService;
+
+    private final ProductCategoryService productCategoryService;
+
+    private final ProductService productService;
 
     @Autowired
-    private ProductCategoryService productCategoryService;
-
-    @Autowired
-    private ProductService productService;
+    public ShopDetailController(ShopService shopService, ProductCategoryService productCategoryService, ProductService productService) {
+        this.shopService = shopService;
+        this.productCategoryService = productCategoryService;
+        this.productService = productService;
+    }
 
     /**
      * 获取店铺信息以及该店铺下面的商品类别列表

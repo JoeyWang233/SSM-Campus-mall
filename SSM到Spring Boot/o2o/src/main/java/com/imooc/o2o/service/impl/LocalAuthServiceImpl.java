@@ -22,8 +22,12 @@ import java.util.Date;
  */
 @Service
 public class LocalAuthServiceImpl implements LocalAuthService {
+    private final LocalAuthDao localAuthDao;
+
     @Autowired
-    private LocalAuthDao localAuthDao;
+    public LocalAuthServiceImpl(LocalAuthDao localAuthDao) {
+        this.localAuthDao = localAuthDao;
+    }
 
     @Override
     public LocalAuth getLocalAuthByUsernameAndPwd(String userName, String password) {

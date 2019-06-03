@@ -23,8 +23,12 @@ import com.imooc.o2o.util.HttpServletRequestUtil;
 @Controller
 @RequestMapping(value = "/local", method = {RequestMethod.GET, RequestMethod.POST})
 public class LocalAuthController {
+    private final LocalAuthService localAuthService;
+
     @Autowired
-    private LocalAuthService localAuthService;
+    public LocalAuthController(LocalAuthService localAuthService) {
+        this.localAuthService = localAuthService;
+    }
 
     /**
      * 将用户信息与平台帐号绑定

@@ -38,14 +38,18 @@ import java.util.Map;
 @Controller
 @RequestMapping("/shopadmin")
 public class ShopManagementController {
-    @Autowired
-    private ShopService shopService;
+    private final ShopService shopService;
+
+    private final ShopCategoryService shopCategoryService;
+
+    private final AreaService areaService;
 
     @Autowired
-    private ShopCategoryService shopCategoryService;
-
-    @Autowired
-    private AreaService areaService;
+    public ShopManagementController(ShopService shopService, ShopCategoryService shopCategoryService, AreaService areaService) {
+        this.shopService = shopService;
+        this.shopCategoryService = shopCategoryService;
+        this.areaService = areaService;
+    }
 
     /**
      *

@@ -24,13 +24,16 @@ import java.util.Date;
  */
 @Service
 public class WechatAuthServiceImpl implements WechatAuthService {
-    @Autowired
-    private WechatAuthDao wechatAuthDao;
-
-    @Autowired
-    private PersonInfoDao personInfoDao;
+    private final WechatAuthDao wechatAuthDao;
+    private final PersonInfoDao personInfoDao;
 
     private Logger log = LoggerFactory.getLogger(WechatAuthServiceImpl.class);
+
+    @Autowired
+    public WechatAuthServiceImpl(WechatAuthDao wechatAuthDao, PersonInfoDao personInfoDao) {
+        this.wechatAuthDao = wechatAuthDao;
+        this.personInfoDao = personInfoDao;
+    }
 
     @Override
     public WechatAuth getWechatAuthByOpenId(String openId) {

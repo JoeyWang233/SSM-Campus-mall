@@ -15,8 +15,12 @@ import java.util.List;
 
 @Service
 public class PersonInfoServiceImpl implements PersonInfoService {
+	private final PersonInfoDao personInfoDao;
+
 	@Autowired
-	private PersonInfoDao personInfoDao;
+	public PersonInfoServiceImpl(PersonInfoDao personInfoDao) {
+		this.personInfoDao = personInfoDao;
+	}
 
 	@Override
 	public PersonInfo getPersonInfoById(Long userId) {

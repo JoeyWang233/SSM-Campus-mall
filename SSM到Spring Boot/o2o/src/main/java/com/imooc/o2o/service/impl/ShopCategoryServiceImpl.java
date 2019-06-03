@@ -20,14 +20,18 @@ import java.util.List;
 @Service
 public class ShopCategoryServiceImpl implements ShopCategoryService {
 
-    @Autowired
-    private ShopCategoryDao shopCategoryDao;
-    @Autowired
-    private JedisUtil.Keys jedisKeys;
-    @Autowired
-    private JedisUtil.Strings jedisStrings;
+    private final ShopCategoryDao shopCategoryDao;
+    private final JedisUtil.Keys jedisKeys;
+    private final JedisUtil.Strings jedisStrings;
 
     private static Logger logger = LoggerFactory.getLogger(ShopCategoryServiceImpl.class);
+
+    @Autowired
+    public ShopCategoryServiceImpl(ShopCategoryDao shopCategoryDao, JedisUtil.Keys jedisKeys, JedisUtil.Strings jedisStrings) {
+        this.shopCategoryDao = shopCategoryDao;
+        this.jedisKeys = jedisKeys;
+        this.jedisStrings = jedisStrings;
+    }
 
     @Override
     public List<ShopCategory> getShopCategoryList(ShopCategory shopCategoryCondition) {

@@ -19,30 +19,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @program: o2o
- * @description:
- * @author: Joey
- * @create: 2019-04-16 21:52
- */
 @Controller
 @RequestMapping("/frontend")
 public class ShopListController {
-    @Autowired
-    private ShopCategoryService shopCategoryService;
+    private final ShopCategoryService shopCategoryService;
+    private final AreaService areaService;
+    private final ShopService shopService;
 
     @Autowired
-    private AreaService areaService;
-
-    @Autowired
-    private ShopService shopService;
+    public ShopListController(ShopCategoryService shopCategoryService, AreaService areaService, ShopService shopService) {
+        this.shopCategoryService = shopCategoryService;
+        this.areaService = areaService;
+        this.shopService = shopService;
+    }
 
     /**
-     * @Description: 返回商品列表页内的ShopCategory列表（二级或者一级），以及区域信息列表
-     * @Param: [request]
-     * @return: java.util.Map<java.lang.String       ,       java.lang.Object>
-     * @Author: Joey
-     * @Date: 2019/4/16 21:55
+     * 返回商品列表页内的ShopCategory列表（二级或者一级），以及区域信息列表
+     * @param request
+     * @return
      */
     @RequestMapping(value = "/listshopspageinfo", method = RequestMethod.GET)
     @ResponseBody

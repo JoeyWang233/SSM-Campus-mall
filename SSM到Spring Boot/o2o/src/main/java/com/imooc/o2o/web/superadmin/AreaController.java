@@ -20,8 +20,12 @@ public class AreaController {
 
     private Logger logger = LoggerFactory.getLogger(AreaController.class);
 
+    private final AreaService areaService;
+
     @Autowired
-    private AreaService areaService;
+    public AreaController(AreaService areaService) {
+        this.areaService = areaService;
+    }
 
     @RequestMapping(value = "/listarea", method = RequestMethod.GET)
     @ResponseBody

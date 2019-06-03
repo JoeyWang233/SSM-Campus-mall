@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Set;
 
 /**
- * @program: o2o
- * @description:
- * @author: Joey
- * @create: 2019-04-20 22:58
+ * @author joeyw
  */
 public class CacheServiceImpl implements CacheService {
+
     @Autowired
     private JedisUtil.Keys jedisKeys;
 

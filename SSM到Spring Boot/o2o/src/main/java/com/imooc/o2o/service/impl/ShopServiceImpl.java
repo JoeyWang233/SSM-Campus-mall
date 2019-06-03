@@ -25,8 +25,12 @@ import java.util.List;
  */
 @Service
 public class ShopServiceImpl implements ShopService {
+    private final ShopDao shopDao;
+
     @Autowired
-    private ShopDao shopDao;
+    public ShopServiceImpl(ShopDao shopDao) {
+        this.shopDao = shopDao;
+    }
 
     @Override
     public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) {

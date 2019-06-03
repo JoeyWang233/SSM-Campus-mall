@@ -27,16 +27,18 @@ import java.util.List;
 @Service
 public class AreaServiceImpl implements AreaService {
 
-    @Autowired
-    private AreaDao areaDao;
-
-    @Autowired
-    private JedisUtil.Keys jedisKeys;
-
-    @Autowired
-    private JedisUtil.Strings jedisStrings;
+    private final AreaDao areaDao;
+    private final JedisUtil.Keys jedisKeys;
+    private final JedisUtil.Strings jedisStrings;
 
     public Logger log = LoggerFactory.getLogger(AreaServiceImpl.class);
+
+    @Autowired
+    public AreaServiceImpl(AreaDao areaDao, JedisUtil.Keys jedisKeys, JedisUtil.Strings jedisStrings) {
+        this.areaDao = areaDao;
+        this.jedisKeys = jedisKeys;
+        this.jedisStrings = jedisStrings;
+    }
 
     @Override
     @Transactional
