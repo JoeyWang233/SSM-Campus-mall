@@ -16,12 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-/**
- * @program: o2o
- * @description:
- * @author: Joey
- * @create: 2019-05-29 23:01
- */
 @Service
 public class WechatAuthServiceImpl implements WechatAuthService {
     private final WechatAuthDao wechatAuthDao;

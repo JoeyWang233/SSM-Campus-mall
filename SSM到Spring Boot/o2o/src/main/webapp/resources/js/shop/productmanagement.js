@@ -16,7 +16,7 @@ $(function() {
                 var productList = data.productList;
                 var tempHtml = '';
                 // 遍历每条商品信息，拼接成一行显示，列信息包括：
-                // 商品名称，优先级，上架\下架(含productId)，编辑按钮(含productId)
+                // 商品名称，积分，上架\下架(含productId)，编辑按钮(含productId)
                 // 预览(含productId)
                 productList.map(function(item, index) {
                     var textOp = "下架";
@@ -34,7 +34,7 @@ $(function() {
                         + item.productName
                         + '</div>'
                         + '<div class="col-20">'
-                        + item.priority
+                        + item.point
                         + '</div>'
                         + '<div class="col-40">'
                         + '<a href="#" class="edit" data-id="'
